@@ -1,0 +1,112 @@
+Thư viện matplotlib là 1 thư viện vẽ đồ thị cấp thấp trong python,
+đóng vai trò trực quan hóa dữ liệu
+
+
+import matplotlib as mpl
+print(mpl.__version__)
+#in ra phiên bản của thư viện
+
+
+#import module con trong thư viện
+import matplotlib.pyplot as pyplot
+
+xpoint = np.array([0, 6]) #tạo mảng điểm trục hoành
+ypoint = np.array([0, 250]) #tạo mảng điểm trục tung 
+
+plt.plot(xpoint, ypoint) #vẽ đường line nối các điểm (0, 0) và (6, 250)
+plt.show()  #hiển thị dữ liệu trực quan 
+
+
+#Tham số hàm plot()
+args: nhận vào đối số là mảng x, y có cùng số lượng phần tử
+scalex: bool -> mặc định là True, chỉ định trục x đồ thị có nên được tự động điều chỉnh vừa với dữ liệu không
+scaley: bool -> ...
+data: Any -> có giá trị mặc định là None, cho phép truyền vào dữ liệu từ bất kỳ nguồn nào
+
+marker: ',', '.', 'o', 's', 'D', '^', 'v', '>', '<', '*', 'p', '2, 3, 4', '|', '_'
+
+linestyle: '-', '--', ':', '-.'
+
+color: màu của đường line: vd c='k'
+
+linewidth: vd lw=2
+
+shortcut: marker:line:color
+
+marker-size: vd ms=20; mec->đường viền ngoài marker: vd mec='k'
+
+fmc -> màu sắc của marker: vd fmc='r'
+
+#Nếu chỉ truyền 1 tham số mảng, mặc định mảng x sẽ là [0, 1, 2, 3,...]
+
+LABEL Trong plot
+
+plt.xlabel(''): tiêu đề trục hoành
+plt.ylabel(''): tiêu đề trục tung
+
+plt.title('Tiêu đề sơ đồ')
+
+***SET FONT FOR title***
+
+plt.title('', fontdict={'family':'font-family', 'color' : 'value', 'size' : 'value'}, loc='left/right/center')
+#tạo font cho title
+#vị trí của title loc
+
+
+***GRID***
+plt.grid(axis='x/y') -> kẻ đường theo x hoặc y
+
+plt.grid(axis='x/y', linestyle='', color='', linewidth=)
+
+
+***SUBPLOT***
+plt.subplot(row, column, index)
+
+vd:
+x1 = np.array([1, 2, 3, 4, 5])
+y1 = np.array([2, 5, 7, 2, 5])
+plt.sublot(1, 2, 1)
+plt.plot(x1, y1)
+
+
+x2 = np.array([1, 2, 3, 4, 5])
+y2 = np.array([2, 4, 6, 8, 10])
+plt.subplot(1, 2, 2)
+plt.plot(x2, y2)
+
+plt.suptitle('') -> tiêu đề chung của các đồ thị subplot
+
+
+
+***SCATTER***
+plt.scatter() -> vẽ biểu đồ phân tán
+plt.scatter(x1, y1, color='', cmap='', alpha='', size='', )
+
+
+
+***BAR*** (Biểu đồ cột)
+vd:
+x = ['apple', 'banana']
+y = [400, 350]
+plt.bar(x, y) #hiển thị theo chiều dọc
+plt.barh(x, y) #hiển thị theo chiều ngang
+plt.show()
+
+
+***PIE CHARTS*** (Biểu đồ tròn)
+hàm plt.pie()
+vd:
+#chia thành n phần với mỗi iEn có m%
+x = np.array([35, 25, 25, 15]) 
+mylabels = ["Apples", "Bananas", "Cherries", "Dates"] #label cho mỗi tỉ lệ của phần trăm trong pie
+plt.pie(x, labels = mylabels, startangle=90, explore=[0, 0, 0, 1], shadow=True, color=[])
+#startangle: đặt góc bắt đầu của phần tử bắt đầu của pie
+#explore: tách các phần tử 1 khoảng trên pie
+#shadow=True: tạo bóng đổ cho pie
+
+plt.legend(title='') #đặt tên cho bảng chú thích
+#các chú thích lấy từ mảng labels của từng phần tử
+plt.show()
+
+***HISTOGRAM***
+plt.hist() -> hiện thị histogram
